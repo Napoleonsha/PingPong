@@ -22,8 +22,10 @@ public class BallMovement : MonoBehaviour
     }
     private void Start()
     {
-        blueScoreUI.text = PlayerPrefs.GetInt("BlueScore", 0).ToString();
-        pinkScoreUI.text = PlayerPrefs.GetInt("PinkScore", 0).ToString();
+        pinkScore = PlayerPrefs.GetInt("PinkScore", 0);
+        blueScore = PlayerPrefs.GetInt("BlueScore", 0);
+        pinkScoreUI.text = pinkScore.ToString();
+        blueScoreUI.text = blueScore.ToString();
         Launch();
     }
 
