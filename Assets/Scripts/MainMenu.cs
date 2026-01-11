@@ -20,14 +20,14 @@ public class MainMenu : MonoBehaviour
     {
         PlayerPrefs.SetInt("BlueScore", 0);
         PlayerPrefs.SetInt("PinkScore", 0);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     public void ContinueGame()
     {
         PlayerPrefs.GetInt("BlueScore", 0);
         PlayerPrefs.GetInt("PinkScore", 0);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
     public void ExitGame ()
     {

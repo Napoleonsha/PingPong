@@ -9,6 +9,8 @@ public class BallMovement : MonoBehaviour
     [SerializeField] float speed = 50f;
     [SerializeField] TMP_Text blueScoreUI;
     [SerializeField] TMP_Text pinkScoreUI;
+    [SerializeField] AudioSource SFX;
+    [SerializeField] AudioClip scoreSound;
     private int 
         pinkScore = 0, 
         blueScore = 0;
@@ -38,25 +40,30 @@ public class BallMovement : MonoBehaviour
     {
         rb.linearVelocity = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)) * speed;
     }
-
+    void ReloadScene()
+    {
+        Time.timeScale = 0;
+        SceneManager.LoadScene(1);
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == "PinkScore")
         {
             pinkScore++;
             pinkScoreUI.text = pinkScore.ToString();
-            Time.timeScale = 0;
+            SFX.PlayOneShot(scoreSound);
+            Invoke(nameof(ReloadScene), 0.5f);
             PlayerPrefs.SetInt("PinkScore", pinkScore);
-            SceneManager.LoadScene(0);
         }
         if (other.gameObject.name == "BlueScore")
         {
             blueScore++;
             blueScoreUI.text = blueScore.ToString();
-            Time.timeScale = 0;
+            SFX.PlayOneShot(scoreSound);
+            Invoke(nameof(ReloadScene), 0.5f);
             PlayerPrefs.SetInt("BlueScore", blueScore);
-            SceneManager.LoadScene(0);
         }
         rb.linearVelocity = Vector3.zero;
+        
     }
 }

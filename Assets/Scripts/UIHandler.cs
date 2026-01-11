@@ -5,6 +5,13 @@ public class UIHandler : MonoBehaviour
 {
     [SerializeField] GameObject pauseUI;
     [SerializeField] GameObject gameUI;
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseButton();
+        }
+    }
     public void PauseButton()
     {
         gameUI.SetActive(false);
@@ -21,12 +28,12 @@ public class UIHandler : MonoBehaviour
     {
         PlayerPrefs.SetInt("BlueScore", 0);
         PlayerPrefs.SetInt("PinkScore", 0);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
         Time.timeScale = 1;
     }
     public void ToMainMenu()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
         Time.timeScale = 1;
     }
 
